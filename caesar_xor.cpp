@@ -1,35 +1,19 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-    cout << "Enter text (single word, no spaces): ";
-    char s[500];
-    cin >> s;
-    cout << "Enter integer key for Caesar and XOR: ";
-    int key; cin >> key;
+int main(){
+    string s;
+    int key;
+    char x;
+    getline(cin, s);
+    cin >> key >> x;
 
-    cout << "\nOriginal chars and ASCII:\n";
-    int i = 0;
-    while (s[i] != '\0') {
-        cout << s[i] << " -> " << (int)(unsigned char)s[i] << "\n";
-        i++;
-    }
+    string c1=s, c2=s;
 
-    cout << "\nCaesar encrypted chars and ASCII:\n";
-    i = 0;
-    while (s[i] != '\0') {
-        unsigned char enc = (unsigned char)((s[i] + key) % 128);
-        cout << enc << " -> " << (int)enc << "\n";
-        i++;
-    }
+    for(int i=0;i<s.size();i++) c1[i] = s[i] + key;
+    for(int i=0;i<s.size();i++) c2[i] = s[i] ^ x;
 
-    cout << "\nXOR encrypted chars and ASCII:\n";
-    i = 0;
-    while (s[i] != '\0') {
-        unsigned char x = (unsigned char)(s[i]) ^ (unsigned char)key;
-        cout << x << " -> " << (int)x << "\n";
-        i++;
-    }
+    cout << c1 << "\n" << c2;
 
     return 0;
 }
